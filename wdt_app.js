@@ -8,7 +8,8 @@ $("document").ready(function () {
         "border": "#212529",
         "border-radius": "10px",
         "border-width": "1px",
-        "width": "75%"
+        "width": "75%",
+        "margin-bottom": "2px"
     })
     $("h1").css({
         "font-family": "Calibri",
@@ -22,5 +23,20 @@ $("document").ready(function () {
         "font-family": "Calibri",
         "background-color": "#83D1E1",
         "color": "#212529"
+    })
+    $("button:first").css({
+        "margin-left": "170px",
+    })
+    $("#button2").css({
+        "margin-right": "170px",
+    })
+    $("#button3").css({
+        "margin-right": "100px"
+    })
+    $("#button4").css({
+        "margin-right": "100px"
+    })
+    $("body").css({
+        "height": "95vh"
     })
 })
