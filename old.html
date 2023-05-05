@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="jquery-3.6.0.js"></script>
+        <script src="wdt_app.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <script src="./JS/bootstrap.min.js"></script>
+        <script src="wdt_app.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body onload="startTime()">
+    
+    <div class="d-flex float-start">
+        <img src="wdtlogo.png" alt="Logo" style="width: 250px; height: auto;">
+    </div>
+        <div class="container d-flex flex-column align-items-center">
+        <h1 class="text-center">Reception Managment Dashboard</h1>
+        <h2 class="text-center">Staff</h2>
+        </div>
+        <div class="row justify-content-center">
+        <table class="table table-bordered table-striped" id="table1">
+            <thead>
+                <th scope="col">Picture</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Email address</th>
+                <th scope="col">Status</th>
+                <th scope="col">Out Time</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Expected Return Time</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row btn-container">
+        <div class="col-5">
+            <button type="button" class="btn btn-danger btn-sm" style="width: 90px; height: 50px;" id="button1">Out</button>
+        </div>
+        <div class="col-7 text-end">
+            <button type="button" class="btn btn-success btn-sm" id="button2" style="width: 90px; height: 50px;">In</button>
+        </div>
+    </div>
+    <h2 class="text-center">Schedule Delivery</h1>
+        <div class="row justify-content-center">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <th scope="col">Vehicle:</th>
+                    <th scope="col">Name:</th>
+                    <th scope="col">Surname:</th>
+                    <th scope="col">Telephone:</th>
+                    <th scope="col">Address:</th>
+                    <th scope="col">Return time:</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">_</th>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_:_:_</td>
+                        <td>_</td>
+                        <td>_:_</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-end">
+                <button type="button" class="btn btn-success btn-sm" id="button3" style="width: 90px; height: 50px;">Add</button>
+                </div>
+            </div>
+        </div>
+        <h2 class="text-center">Delivery Board</h2>
+        <div class="row justify-content-center">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <th scope="col">Vehicle:</th>
+                    <th scope="col">Name:</th>
+                    <th scope="col">Surname:</th>
+                    <th scope="col">Telephone:</th>
+                    <th scope="col">Address:</th>
+                    <th scope="col">Return time:</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">_</th>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_:_:_</td>
+                        <td>_</td>
+                        <td>_:_</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">_</th>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_:_:_</td>
+                        <td>_</td>
+                        <td>_:_</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <button type="button" class="btn btn-danger btn-sm" id="button4"
+                        style="width: 90px; height: 50px">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-end">
+            <h2 id="txt"></h2>
+        </div>
+    </body>
+</html>
