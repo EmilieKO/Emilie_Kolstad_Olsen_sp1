@@ -76,6 +76,7 @@ input {
     font-family: Calibri;
     background-color: transparent;
     color: #212529;
+    border-bottom: 1px solid black;
 }
 
 #driverBody tbody tr:hover {
@@ -84,4 +85,44 @@ input {
 
 #driverBody tbody tr.selected {
     background-color: #3e9fb3;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+td i{
+    font-size: x-large;
+}
+.toast {
+    /* display: block !important; */
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.toast-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toast-header strong {
+    margin-right: 130px;
+}
+
+.toast-header small {
+    order: 3;
+}
+
+.toast-header .close {
+    order: 4;
+}
+
+.toast-body {
+    text-align: left;
+}
+
+#toastbtn {
+    display: flex;
+    justify-content: flex-end;
 }
