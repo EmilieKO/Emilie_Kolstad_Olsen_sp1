@@ -31,11 +31,19 @@ return i;
 //     }
 // })
 
-// async function staffUserGet() {
-//     const response = await fetch('https://randomuser.me/api/?results=5&inc=picture,name,email');
-//     let data = await response.parse(response)
-//     console.log(data);
-// }
+async function staffUserGet() {
+    const response = await fetch('https://randomuser.me/api/?results=5&inc=picture,name,email');
+    const data = await response.json()
+    const employees = data.results.map(result => new Employee(
+        result.name.first,
+        result.name.last,
+        result.picture.small,
+        result.email
+    )) 
+    return employees
+}
+
+staffUserGet().then(result => console.log(result))
 
 function clearTable() {
     document.getElementById("driverVehicle").value = "";
