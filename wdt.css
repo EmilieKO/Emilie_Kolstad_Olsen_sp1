@@ -79,11 +79,13 @@ input {
     border-bottom: 1px solid black;
 }
 
-#driverBody tbody tr:hover {
+#driverBody,
+#table1 tbody tr:hover {
     background-color: #48aac2;
 }
 
-#driverBody tbody tr.selected {
+#driverBody,
+#table1 tbody tr.selected {
     background-color: #3e9fb3;
 }
 
