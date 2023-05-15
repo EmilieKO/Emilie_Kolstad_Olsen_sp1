@@ -79,12 +79,18 @@ input {
     border-bottom: 1px solid black;
 }
 
-#driverBody,
+
 #table1 tbody tr:hover {
     background-color: #48aac2;
 }
 
-#driverBody,
+#table2 tbody tr:hover {
+    background-color: #48aac2;
+}
+
+#table2 tbody tr.selected{
+    background-color: #3e9fb3;
+}
 #table1 tbody tr.selected {
     background-color: #3e9fb3;
 }
@@ -96,11 +102,16 @@ td {
 td i{
     font-size: x-large;
 }
-.toast {
+#toastContainer {
     /* display: block !important; */
     position: fixed;
     top: 0;
     right: 0;
+
+}
+
+.toast {
+    position: relative;
 }
 
 .toast-header {
@@ -109,12 +120,19 @@ td i{
 }
 
 .toast-header strong {
-    margin-right: 130px;
+    order: 2;
 }
 
 .toast-header small {
     order: 3;
 }
+
+#toastId2 .toast-header img {
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: 0.5rem;
+}
+
 
 .toast-header .close {
     order: 4;
@@ -128,3 +146,9 @@ td i{
     display: flex;
     justify-content: flex-end;
 }
+::placeholder {
+    color:#212529;
+    font-family: Calibri;
+    opacity: 0.5;
+}
+

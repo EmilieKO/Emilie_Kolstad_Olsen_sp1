@@ -189,15 +189,12 @@ function addDelivery() {
         const h = now.getHours();
         const m = now.getMinutes();
         const toastContainer = document.querySelector('#toastId');
-        const toast = toastContainer.querySelector('.toast');
-        const toastHeader = toast.querySelector('.toast-header');
-        const toastBody = toast.querySelector('.toast-body');
+        const toastBody = toastContainer.querySelector('.toast-body');
         const returnTimeDate = new Date(`1970-01-01T${returnTime}:00`);
-
+        staffUserGet()
         if (h > returnTimeDate.getHours() || (h === returnTimeDate.getHours() && m > returnTimeDate.getMinutes())) {
-            toastHeader.querySelector('.mr-auto').textContent = 'Your driver is late!';
             toastBody.querySelector('p').textContent = `${newDriver.firstName} ${newDriver.surName} should have returned at ${returnTime}. Their phone number is ${newDriver.phone} and they are at this location: ${newDriver.address}.`;    
-            toast.classList.add('show');
+            toastContainer.classList.add('show');
         } else {
         setTimeout(() => deliveryDriverIsLate(returnTime), 10000);
         }
@@ -205,23 +202,46 @@ function addDelivery() {
 }
 
 $("document").ready(function () {
-    $('#driverBody').on("click", "tr", function () {
+    $('#table2').on("click", "tr", function () {
+        $(this).toggleClass("selected");
+    });
+    $('#table2').on("click", "tr", function () {
         $(this).toggleClass("selected");
     });
     $("#button4").click(function (e) {
-        let result = window.confirm("Are you sure you want to delete this row?")
-        if (result == false) {
-            e.preventDefault()
+    const selectedRow = $("#driverBody tr.selected")
+        if (selectedRow.length === 0) {
+            alert("Please select delivery driver.")
         } else {
-            $("#driverBody .selected").remove();
+            let result = window.confirm("Are you sure you want to delete this row?")
+            if (result == false) {
+                e.preventDefault()
+            } else {
+                $("#driverBody .selected").remove();
+            }
         }
     });
-    $(".toast .close").on("click", function () {
-        $(".toast").toast("hide")
+    $("#close1").on("click", function () {
+        $("#toastId").toast("hide")
+    }) 
+    $("#close2").on("click", function () {
+        $("#toastId2").toast("hide")
+        const image = document.querySelector('#toastId2 .toast-header img');
+        if (image) {
+            image.remove();
+        }
     }) 
     $('#table1').on("click", "tr", function () {
+        $("#table1 tr").not(this).removeClass("selected")
         $(this).toggleClass("selected");
     });
+    $('#table2').on("click", "tr", function () {
+    $("#table2 tr").not(this).removeClass("selected")
+    $(this).toggleClass("selected");
+});
+    $("#toastId").on("hidden.bs.toast", function () {
+        $("#toastId2").appendTo("#toastContainer").toast("show")
+    })
 });
 
 function staffIn() {
@@ -230,8 +250,9 @@ function staffIn() {
         $("#table1 .selected td").eq(5).html("")
         $("#table1 .selected td").eq(6).html("")
         $("#table1 .selected td").eq(7).html("")
+        $("#table1 tr.selected").removeClass("selected")
     })
-}
+}   
 
 function staffOut() {
     const selectedRow = $("#table1 tr.selected")
@@ -239,15 +260,49 @@ function staffOut() {
             alert("Please select a staff member.")
         } else {
             $("#table1 .selected td").eq(4).html("Out")
-            let outTime = prompt("When are they leaving?");
+            let outTime = prompt("When are they leaving? Please use the hh:mm format.");
             $("#table1 .selected td").eq(5).html(outTime)
-            let expReturn = prompt("When will they return?")
+            let expReturn = prompt("When will they return? Please use the hh:mm format.")
             $("#table1 .selected td").eq(7).html(expReturn)
-            let timeStart = new Date(`1970-01-01T${outTime}:00`).getTime()
-            let timeEnd = new Date(`1970-01-01T${expReturn}:00`).getTime()
-            console.log(timeStart)
-            let duration = timeEnd - timeStart
-            let hDiff = duration / 3600 / 1000
-            $("#table1 .selected td").eq(6).html(hDiff + " hours.")
+            let timeStart = new Date(`1970-01-01T${outTime}:00`)
+            let timeEnd = new Date(`1970-01-01T${expReturn}:00`)
+
+            let durationM = Math.round((timeEnd - timeStart) / 1000 / 60)
+            let durationH = Math.floor(durationM / 60)
+            let durationMleft = durationM % 60
+
+            $("#table1 .selected td").eq(6).html(`${durationH}h : ${durationMleft}m`)
+
+            let picture = $("#table1 .selected td").eq(0).find("img").attr("src")
+            let fName = $("#table1 .selected td").eq(1).text()
+            let lName = $("#table1 .selected td").eq(2).text()
+            let email = $("#table1 .selected td").eq(3).text()
+            let timeOut = $("#table1 .selected td").eq(6).text()
+            selectedRow.removeClass("selected")
+            staffMemberIsLate(picture, fName, lName, email, timeOut, timeEnd)
+        }
+    }
+    function staffMemberIsLate(picture, fName, lName, email, timeOut,timeEnd) {
+        let now = new Date()
+        let h = now.getHours()
+        let m = now.getMinutes()
+
+        const toastContainer = document.querySelector('#toastId2');
+        const toastHeader = toastContainer.querySelector('.toast-header');
+
+        let timeEndH = timeEnd.getHours()
+        let timeEndM = timeEnd.getMinutes()
+
+        let image = document.createElement("img")
+        image.src = picture
+        
+        if (h > timeEndH || (h === timeEndH && m > timeEndM)) {
+            
+            toastHeader.appendChild(image)
+            $("#toastId2 p").text(`${fName} ${lName} is currently late. Their email is ${email} and they have been gone ${timeOut}. `)
+            console.log(fName)
+            toastContainer.classList.add('show');
+        } else {
+            setTimeout(() => staffMemberIsLate(picture,fName, lName, email, timeOut, timeEnd), 10000);
         }
     }
