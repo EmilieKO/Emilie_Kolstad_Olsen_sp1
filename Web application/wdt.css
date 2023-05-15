@@ -27,11 +27,13 @@
     background-color: #83D1E1;
     color: #212529;
 }
+
 thead {
     background-color: #0E8EA8;
     font-family: Consolas;
     color: #fff
 }
+
 .table {
     border: #212529;
     border-radius: 10px;
@@ -39,14 +41,17 @@ thead {
     width: 75%;
     margin-bottom: 2px;
 }
+
 h1 {
     font-family: Calibri;
     color: #212529;
-} 
+}
+
 h2 {
     font-family: Calibri;
     color: #212529
 }
+
 tbody {
     font-family: Calibri;
     background-color: #83D1E1;
@@ -56,21 +61,27 @@ tbody {
 #button1 {
     margin-left: 170px;
 }
+
 #button2 {
     margin-right: 48px;
 }
+
 #button3 {
     margin-right: 15px;
 }
+
 #button4 {
     margin-right: 15px;
 }
+
 body {
     height: 95vh;
 }
+
 body {
     font-family: Arial, Helvetica, sans-serif
 }
+
 input {
     border: none;
     font-family: Calibri;
@@ -88,9 +99,10 @@ input {
     background-color: #48aac2;
 }
 
-#table2 tbody tr.selected{
+#table2 tbody tr.selected {
     background-color: #3e9fb3;
 }
+
 #table1 tbody tr.selected {
     background-color: #3e9fb3;
 }
@@ -99,9 +111,11 @@ td {
     text-align: center;
     vertical-align: middle;
 }
-td i{
+
+td i {
     font-size: x-large;
 }
+
 #toastContainer {
     /* display: block !important; */
     position: fixed;
@@ -146,9 +160,9 @@ td i{
     display: flex;
     justify-content: flex-end;
 }
+
 ::placeholder {
-    color:#212529;
+    color: #212529;
     font-family: Calibri;
     opacity: 0.5;
 }
-
