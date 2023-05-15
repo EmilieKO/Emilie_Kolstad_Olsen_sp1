@@ -14,7 +14,8 @@ To use this application, you have to install or link to these external libraries
 
 ## Code files
 
-The source code can be found in the head section of "wdt.html", where the main section is in "wdt_app.js".
+The source code can be found in the "Web application" folder.
+Then navigate to the head section of "wdt.html", where the main javascript code is in "wdt_app.js", and the CSS code is in "wdt.css".
 
 ## Running the web app
 
@@ -32,3 +33,8 @@ The following functionality should now be available to you:
 - The schedule delivery table can take user input, and transfer it to the delivery board using the "Add" button.
 - If a delivery driver is late, a toast notification will appear with their information.
 - To remove a delivery driver's info, you can select a driver, and click "Clear"
+- A digital clock is at the bottom of the page, where it displays the current date and time.
+
+## Additional information
+
+- Please use the format of hh:mm when you are asked to choose a time.
