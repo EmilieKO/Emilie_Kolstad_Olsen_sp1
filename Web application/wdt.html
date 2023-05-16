@@ -63,7 +63,7 @@
                 <th scope="col">Duration</th>
                 <th scope="col">Expected Return Time</th>
             </thead>
-            <tbody>
+            <tbody id="employeeBody">
             </tbody>
         </table>
     </div>
@@ -114,8 +114,7 @@
         </div>
         <div class="row container">
             <div class="col-12 text-end">
-                <button type="button" class="btn btn-success btn-sm" id="button3" style="width: 90px; height: 50px;"
-                    onclick="addDelivery()">Add</button>
+                <button type="button" class="btn btn-success btn-sm" id="button3" style="width: 90px; height: 50px;" onclick="addDelivery()">Add</button>
             </div>
         </div>
         <h2 class="text-center">Delivery Board</h2>
@@ -149,7 +148,7 @@
                 </div>
             </div>
             <div class="toast" role="alert" id="toastId2">
-                <div class="toast-header" id="#toastHeader">
+                <div class="toast-header" id="toastHeader">
                     <strong class="mr-auto">Your employee is late!</strong>
                     <small class="text-muted">just now</small>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" id="close2">

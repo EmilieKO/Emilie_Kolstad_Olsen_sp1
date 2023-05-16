@@ -1,3 +1,4 @@
+
 function digitalClock() {
     const today = new Date();
     let h = today.getHours();
@@ -21,7 +22,11 @@ function checkTime(i) {
 return i;
 }
 
+let staffMembers = []
 
+window.onload = staffUserGet()
+
+//API request and processing results
 async function staffUserGet() {
     const response = await fetch('https://randomuser.me/api/?results=5&inc=picture,name,email');
     const data = await response.json()
@@ -35,9 +40,11 @@ async function staffUserGet() {
         '',
         '',
     )) 
-    var table = document.getElementById("table1").getElementsByTagName('tbody')[0];
+    var table1 = document.getElementById("employeeBody")
+
+    //Inserts cells to table
     for (var i = 0; i < data.results.length; i++){
-        var row = table.insertRow(i);
+        var row = table1.insertRow(i);
         
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -48,6 +55,7 @@ async function staffUserGet() {
         var cell7 = row.insertCell(6);
         var cell8 = row.insertCell(7);
         
+        //Fills table with data
         cell1.innerHTML = '<img src="' + data.results[i].picture.medium + '">';
         cell2.innerHTML = data.results[i].name.first;
         cell3.innerHTML = data.results[i].name.last;
@@ -61,8 +69,8 @@ async function staffUserGet() {
     }
 
 
-staffUserGet().then(result => console.log(result))
 
+//Clear the table row
 function clearTable() {
     document.getElementById("driverVehicle").value = "";
     document.getElementById("driverName").value = "";
@@ -113,6 +121,7 @@ class BikeDriver extends DeliveryDriver {
     }
 }
 
+//Bootstrap icons 
 const vehicleIcon = {
     car: '"bi bi-car-front-fill"',
     bike: '"bi bi-bicycle"'
@@ -120,6 +129,7 @@ const vehicleIcon = {
 
 var returnTime = {}
 var newDriver = {}
+
 function validateDelivery() {
     let firstName = document.getElementById("driverName").value;
     let surName = document.getElementById("driverSurname").value
@@ -148,7 +158,7 @@ function addDelivery() {
     let address = document.getElementById("driverAddress").value
     let returnTime = document.getElementById("driverReturn").value
 
-
+    // Determine the vehicle icon
     if (vehicle == "car") {
         newDriver = new CarDriver(firstName, surName, phone, address, returnTime);
     } else if (vehicle == "bike") {
@@ -162,19 +172,21 @@ function addDelivery() {
         let newTable = document.getElementById("driverBody");
         let row = newTable.insertRow();
 
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        var cell6 = row.insertCell(5);
+    // Insert cells to table
+        var newCell1 = row.insertCell(0);
+        var newCell2 = row.insertCell(1);
+        var newCell3 = row.insertCell(2);
+        var newCell4 = row.insertCell(3);
+        var newCell5 = row.insertCell(4);
+        var newCell6 = row.insertCell(5);
 
-        cell1.innerHTML = '<i class=' + vehicleIcon[newDriver.vehicle] + '></i>'
-        cell2.innerHTML = newDriver.firstName
-        cell3.innerHTML = newDriver.surName;
-        cell4.innerHTML = newDriver.phone;
-        cell5.innerHTML = newDriver.address;
-        cell6.innerHTML = newDriver.returnTime;
+    //Fill table with user data
+        newCell1.innerHTML = '<i class=' + vehicleIcon[newDriver.vehicle] + '></i>'
+        newCell2.innerHTML = newDriver.firstName
+        newCell3.innerHTML = newDriver.surName;
+        newCell4.innerHTML = newDriver.phone;
+        newCell5.innerHTML = newDriver.address;
+        newCell6.innerHTML = newDriver.returnTime;
 
         document.getElementById("driverVehicle").value = "";
         document.getElementById("driverName").value = "";
@@ -184,31 +196,31 @@ function addDelivery() {
         document.getElementById("driverReturn").value = "";
 
     deliveryDriverIsLate(returnTime, newDriver)
-    function deliveryDriverIsLate(returnTime) {
-        const now = new Date();
-        const h = now.getHours();
-        const m = now.getMinutes();
-        const toastContainer = document.querySelector('#toastId');
-        const toastBody = toastContainer.querySelector('.toast-body');
-        const returnTimeDate = new Date(`1970-01-01T${returnTime}:00`);
-        staffUserGet()
-        if (h > returnTimeDate.getHours() || (h === returnTimeDate.getHours() && m > returnTimeDate.getMinutes())) {
-            toastBody.querySelector('p').textContent = `${newDriver.firstName} ${newDriver.surName} should have returned at ${returnTime}. Their phone number is ${newDriver.phone} and they are at this location: ${newDriver.address}.`;    
-            toastContainer.classList.add('show');
-        } else {
-        setTimeout(() => deliveryDriverIsLate(returnTime), 10000);
-        }
+}
+function deliveryDriverIsLate(returnTime, newDriver) {
+    const now = new Date();
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const toastContainer = document.querySelector('#toastId');
+    const toastBody = toastContainer.querySelector('.toast-body');
+    const returnTimeDate = new Date(`1970-01-01T${returnTime}:00`);
+
+    //Compare current time, and user input
+    if (h > returnTimeDate.getHours() || (h === returnTimeDate.getHours() && m > returnTimeDate.getMinutes())) {
+        toastBody.querySelector('p').textContent = `${newDriver.firstName} ${newDriver.surName} should have returned at ${returnTime}. Their phone number is ${newDriver.phone} and they are at this location: ${newDriver.address}.`;    
+        toastContainer.classList.add('show');
+    } else {
+    setTimeout(() => deliveryDriverIsLate(returnTime), 10000);
     }
 }
 
 $("document").ready(function () {
-    $('#table2').on("click", "tr", function () {
-        $(this).toggleClass("selected");
-    });
+    //For selecting table rows
     $('#table2').on("click", "tr", function () {
         $(this).toggleClass("selected");
     });
     $("#button4").click(function (e) {
+    //Deleting table row
     const selectedRow = $("#driverBody tr.selected")
         if (selectedRow.length === 0) {
             alert("Please select delivery driver.")
@@ -221,6 +233,8 @@ $("document").ready(function () {
             }
         }
     });
+
+//close the toast notifications
     $("#close1").on("click", function () {
         $("#toastId").toast("hide")
     }) 
@@ -231,6 +245,7 @@ $("document").ready(function () {
             image.remove();
         }
     }) 
+    //Only have one selected row at a time
     $('#table1').on("click", "tr", function () {
         $("#table1 tr").not(this).removeClass("selected")
         $(this).toggleClass("selected");
@@ -239,9 +254,6 @@ $("document").ready(function () {
     $("#table2 tr").not(this).removeClass("selected")
     $(this).toggleClass("selected");
 });
-    $("#toastId").on("hidden.bs.toast", function () {
-        $("#toastId2").appendTo("#toastContainer").toast("show")
-    })
 });
 
 function staffIn() {
@@ -264,15 +276,18 @@ function staffOut() {
             $("#table1 .selected td").eq(5).html(outTime)
             let expReturn = prompt("When will they return? Please use the hh:mm format.")
             $("#table1 .selected td").eq(7).html(expReturn)
+            
+            // Calculate duration
             let timeStart = new Date(`1970-01-01T${outTime}:00`)
             let timeEnd = new Date(`1970-01-01T${expReturn}:00`)
-
+            
             let durationM = Math.round((timeEnd - timeStart) / 1000 / 60)
             let durationH = Math.floor(durationM / 60)
             let durationMleft = durationM % 60
 
             $("#table1 .selected td").eq(6).html(`${durationH}h : ${durationMleft}m`)
 
+            //Find relevant data in the cells
             let picture = $("#table1 .selected td").eq(0).find("img").attr("src")
             let fName = $("#table1 .selected td").eq(1).text()
             let lName = $("#table1 .selected td").eq(2).text()
@@ -296,6 +311,7 @@ function staffOut() {
         let image = document.createElement("img")
         image.src = picture
         
+        //compare user input to current time
         if (h > timeEndH || (h === timeEndH && m > timeEndM)) {
             
             toastHeader.appendChild(image)
@@ -303,6 +319,7 @@ function staffOut() {
             console.log(fName)
             toastContainer.classList.add('show');
         } else {
+            //Continously check if they're late
             setTimeout(() => staffMemberIsLate(picture,fName, lName, email, timeOut, timeEnd), 10000);
         }
-    }
+    }   
