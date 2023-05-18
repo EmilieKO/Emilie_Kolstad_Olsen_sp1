@@ -210,7 +210,7 @@ function deliveryDriverIsLate(returnTime, newDriver) {
         toastBody.querySelector('p').textContent = `${newDriver.firstName} ${newDriver.surName} should have returned at ${returnTime}. Their phone number is ${newDriver.phone} and they are at this location: ${newDriver.address}.`;    
         toastContainer.classList.add('show');
     } else {
-    setTimeout(() => deliveryDriverIsLate(returnTime), 10000);
+    setTimeout(() => deliveryDriverIsLate(returnTime, newDriver), 10000);
     }
 }
 
