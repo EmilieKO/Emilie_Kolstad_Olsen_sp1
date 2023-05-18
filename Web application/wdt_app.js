@@ -215,10 +215,6 @@ function deliveryDriverIsLate(returnTime, newDriver) {
 }
 
 $("document").ready(function () {
-    //For selecting table rows
-    // $('#tabl').on("click", "tr", function () {
-    //     $(this).toggleClass("selected");
-    // });
     $("#button4").click(function (e) {
     //Deleting table row
     const selectedRow = $("#driverBody tr.selected")
