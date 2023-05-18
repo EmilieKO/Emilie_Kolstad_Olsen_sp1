@@ -38,3 +38,5 @@ The following functionality should now be available to you:
 ## Additional information
 
 - Please use the format of hh:mm when you are asked to choose a time.
+- I found many examples of codes I needed on google, however I never copy/pasted, I edited it all on my own.
+- I got inspiration from this video: https://www.youtube.com/watch?v=3Gi_l-WaE-c on how to populate a table with user input.
