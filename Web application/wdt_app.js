@@ -216,9 +216,9 @@ function deliveryDriverIsLate(returnTime, newDriver) {
 
 $("document").ready(function () {
     //For selecting table rows
-    $('#table2').on("click", "tr", function () {
-        $(this).toggleClass("selected");
-    });
+    // $('#tabl').on("click", "tr", function () {
+    //     $(this).toggleClass("selected");
+    // });
     $("#button4").click(function (e) {
     //Deleting table row
     const selectedRow = $("#driverBody tr.selected")
@@ -246,14 +246,14 @@ $("document").ready(function () {
         }
     }) 
     //Only have one selected row at a time
-    $('#table1').on("click", "tr", function () {
-        $("#table1 tr").not(this).removeClass("selected")
+    $('#employeeBody').on("click", "tr", function () {
+        $("#employeeBody tr").not(this).removeClass("selected")
         $(this).toggleClass("selected");
     });
-    $('#table2').on("click", "tr", function () {
-    $("#table2 tr").not(this).removeClass("selected")
-    $(this).toggleClass("selected");
-});
+    $('#driverBody').on("click", "tr", function () {
+        $("#driverBody tr").not(this).removeClass("selected")
+        $(this).toggleClass("selected");
+    });
 });
 
 function staffIn() {

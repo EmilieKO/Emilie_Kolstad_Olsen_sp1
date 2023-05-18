@@ -10,7 +10,7 @@ To use this application, you have to install or link to these external libraries
 
 - jQuery (version 3.6.0 or above)
 - Bootstrap (version 4.3.1 or above)
-- Bootstrap icons
+- Bootstrap icons (version 1.9 or above)
 
 ## Code files
 

@@ -99,11 +99,11 @@ input {
     background-color: #48aac2;
 }
 
-#table2 tbody tr.selected {
+#employeeBody tr.selected {
     background-color: #3e9fb3;
 }
 
-#table1 tbody tr.selected {
+#driverBody tr.selected {
     background-color: #3e9fb3;
 }
 
